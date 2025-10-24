@@ -6,6 +6,8 @@ import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 
+import static br.com.alura.AluraFake.course.Status.BUILDING;
+
 @Entity
 public class Course {
 
@@ -58,6 +60,10 @@ public class Course {
 
     public Status getStatus() {
         return status;
+    }
+
+    public boolean isBuildingStatus(){
+       return BUILDING.equals(this.status);
     }
 
     public LocalDateTime getPublishedAt() {
