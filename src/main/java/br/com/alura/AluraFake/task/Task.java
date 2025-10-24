@@ -2,6 +2,7 @@ package br.com.alura.AluraFake.task;
 
 import br.com.alura.AluraFake.course.Course;
 import br.com.alura.AluraFake.task.dto.NewTaskOpenTextDTO;
+import br.com.alura.AluraFake.task.dto.NewTaskSingleChoiceDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -28,8 +29,7 @@ public class Task {
 
     private String statement;
 
-    @ManyToMany
-    @JoinTable(name = "TaskOptions", joinColumns = {@JoinColumn(name = "task_id")})
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<TaskOptions> options;
 
     @Deprecated
@@ -41,6 +41,14 @@ public class Task {
         this.type = type;
         this.order = dto.getOrder();
         this.statement = dto.getStatement();
+    }
+
+    public Task(Course course, Type type, NewTaskSingleChoiceDTO dto){
+        this.course = course;
+        this.type = type;
+        this.order = dto.getOrder();
+        this.statement = dto.getStatement();
+        this.options = dto.getOptions().stream().map(optionDTO -> new TaskOptions(optionDTO, this)).toList();
     }
 
     public Long getId() {

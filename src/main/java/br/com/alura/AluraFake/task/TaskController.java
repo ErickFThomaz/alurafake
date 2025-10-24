@@ -3,6 +3,7 @@ package br.com.alura.AluraFake.task;
 import br.com.alura.AluraFake.course.Course;
 import br.com.alura.AluraFake.course.CourseRepository;
 import br.com.alura.AluraFake.task.dto.NewTaskOpenTextDTO;
+import br.com.alura.AluraFake.task.dto.NewTaskSingleChoiceDTO;
 import br.com.alura.AluraFake.util.ErrorItemDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,9 @@ public class TaskController {
 
     private final TaskCommand taskCommand;
 
-    private final CourseRepository courseRepository;
-
     @Autowired
-    public TaskController(TaskCommand taskCommand, CourseRepository courseRepository) {
+    public TaskController(TaskCommand taskCommand) {
         this.taskCommand = taskCommand;
-        this.courseRepository = courseRepository;
     }
 
     @PostMapping("/task/new/opentext")
@@ -32,7 +30,8 @@ public class TaskController {
     }
 
     @PostMapping("/task/new/singlechoice")
-    public ResponseEntity newSingleChoice() {
+    public ResponseEntity newSingleChoice(@Valid @RequestBody NewTaskSingleChoiceDTO dto) {
+        taskCommand.createSingleChoice(dto);
         return ResponseEntity.ok().build();
     }
 

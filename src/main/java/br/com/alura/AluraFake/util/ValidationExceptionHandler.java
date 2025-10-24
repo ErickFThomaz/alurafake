@@ -18,7 +18,12 @@ public class ValidationExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<List<ErrorItemDTO>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        List<ErrorItemDTO> errors = ex.getBindingResult().getFieldErrors().stream().map(ErrorItemDTO::new).toList();
+        List<ErrorItemDTO> errors = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(ErrorItemDTO::new)
+                .toList();
+
         return ResponseEntity.badRequest().body(errors);
     }
 
