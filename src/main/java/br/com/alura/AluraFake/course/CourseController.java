@@ -13,11 +13,15 @@ import java.util.*;
 @RestController
 public class CourseController {
 
+    private final CourseCommand courseCommand;
+
     private final CourseRepository courseRepository;
     private final UserRepository userRepository;
 
+
     @Autowired
-    public CourseController(CourseRepository courseRepository, UserRepository userRepository){
+    public CourseController(CourseCommand courseCommand, CourseRepository courseRepository, UserRepository userRepository){
+        this.courseCommand = courseCommand;
         this.courseRepository = courseRepository;
         this.userRepository = userRepository;
     }
@@ -52,7 +56,7 @@ public class CourseController {
 
     @PostMapping("/course/{id}/publish")
     public ResponseEntity createCourse(@PathVariable("id") Long id) {
+        courseCommand.publish(id);
         return ResponseEntity.ok().build();
     }
-
 }

@@ -7,6 +7,7 @@ import org.springframework.util.Assert;
 import java.time.LocalDateTime;
 
 import static br.com.alura.AluraFake.course.Status.BUILDING;
+import static br.com.alura.AluraFake.course.Status.PUBLISHED;
 
 @Entity
 public class Course {
@@ -32,6 +33,12 @@ public class Course {
         this.instructor = instructor;
         this.description = description;
         this.status = Status.BUILDING;
+    }
+
+    public Course publish() {
+        this.status = PUBLISHED;
+        this.publishedAt = LocalDateTime.now();
+        return this;
     }
 
     public Long getId() {
