@@ -1,17 +1,15 @@
 package br.com.alura.AluraFake.task;
 
-import br.com.alura.AluraFake.course.Course;
-import br.com.alura.AluraFake.course.CourseRepository;
+import br.com.alura.AluraFake.task.dto.NewTaskMultipleChoiceDTO;
 import br.com.alura.AluraFake.task.dto.NewTaskOpenTextDTO;
 import br.com.alura.AluraFake.task.dto.NewTaskSingleChoiceDTO;
-import br.com.alura.AluraFake.util.ErrorItemDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TaskController {
@@ -36,7 +34,8 @@ public class TaskController {
     }
 
     @PostMapping("/task/new/multiplechoice")
-    public ResponseEntity newMultipleChoice() {
+    public ResponseEntity newMultipleChoice(@Valid @RequestBody NewTaskMultipleChoiceDTO dto) {
+        taskCommand.createMultipleChoice(dto);
         return ResponseEntity.ok().build();
     }
 

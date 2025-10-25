@@ -1,8 +1,7 @@
 package br.com.alura.AluraFake.task;
 
 import br.com.alura.AluraFake.course.Course;
-import br.com.alura.AluraFake.task.dto.NewTaskOpenTextDTO;
-import br.com.alura.AluraFake.task.dto.NewTaskSingleChoiceDTO;
+import br.com.alura.AluraFake.task.dto.NewTaskOptionDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -36,19 +35,20 @@ public class Task {
     public Task(){
     }
 
-    public Task(Course course, Type type, NewTaskOpenTextDTO dto){
+    public Task(Course course, Type type, int order, String statement){
         this.course = course;
         this.type = type;
-        this.order = dto.getOrder();
-        this.statement = dto.getStatement();
+        this.order = order;
+        this.statement = statement;
     }
 
-    public Task(Course course, Type type, NewTaskSingleChoiceDTO dto){
+
+    public Task(Course course, Type type, int order, String statement, List<NewTaskOptionDTO> options){
         this.course = course;
         this.type = type;
-        this.order = dto.getOrder();
-        this.statement = dto.getStatement();
-        this.options = dto.getOptions().stream().map(optionDTO -> new TaskOptions(optionDTO, this)).toList();
+        this.order = order;
+        this.statement = statement;
+        this.options = options.stream().map(optionDTO -> new TaskOptions(optionDTO, this)).toList();
     }
 
     public Long getId() {

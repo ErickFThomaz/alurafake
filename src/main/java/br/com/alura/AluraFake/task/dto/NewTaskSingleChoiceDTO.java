@@ -10,6 +10,7 @@ import java.util.List;
 @ValidSingleChoiceTask
 public class NewTaskSingleChoiceDTO {
 
+    @Min(1)
     private Long courseId;
 
     @Length(min = 4, max = 255)
