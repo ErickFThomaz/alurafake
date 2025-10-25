@@ -59,4 +59,10 @@ public class CourseController {
         courseCommand.publish(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/instructor/{instructorId}/courses")
+    public ResponseEntity findAllCoursesByInstructorId(@PathVariable("instructorId") Long id) {
+        return ResponseEntity.ok().build();
+    }
+
 }

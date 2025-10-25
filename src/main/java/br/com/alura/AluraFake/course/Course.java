@@ -73,6 +73,10 @@ public class Course {
        return BUILDING.equals(this.status);
     }
 
+    public boolean isPublished(){
+        return PUBLISHED.equals(this.status);
+    }
+
     public LocalDateTime getPublishedAt() {
         return publishedAt;
     }
