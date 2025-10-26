@@ -1,6 +1,5 @@
 package br.com.alura.AluraFake.task.dto;
 
-import br.com.alura.AluraFake.course.Status;
 import jakarta.validation.constraints.Min;
 import org.hibernate.validator.constraints.Length;
 
@@ -14,6 +13,15 @@ public class NewTaskOpenTextDTO {
 
     @Min(1)
     private Integer order;
+
+    public NewTaskOpenTextDTO() {
+    }
+
+    public NewTaskOpenTextDTO(Long courseId, String statement, Integer order) {
+        this.courseId = courseId;
+        this.statement = statement;
+        this.order = order;
+    }
 
     public Long getCourseId() {
         return courseId;

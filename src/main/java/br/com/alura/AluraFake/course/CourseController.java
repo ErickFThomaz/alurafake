@@ -15,15 +15,19 @@ public class CourseController {
 
     private final CourseCommand courseCommand;
 
-    private final CourseRepository courseRepository;
+    private final CourseQuery courseQuery;
+
     private final UserRepository userRepository;
+
+    private final CourseRepository courseRepository;
 
 
     @Autowired
-    public CourseController(CourseCommand courseCommand, CourseRepository courseRepository, UserRepository userRepository){
+    public CourseController(CourseQuery courseQuery, CourseCommand courseCommand, CourseRepository courseRepository, UserRepository userRepository){
         this.courseCommand = courseCommand;
         this.courseRepository = courseRepository;
         this.userRepository = userRepository;
+        this.courseQuery = courseQuery;
     }
 
     @Transactional
@@ -62,7 +66,7 @@ public class CourseController {
 
     @GetMapping("/instructor/{instructorId}/courses")
     public ResponseEntity findAllCoursesByInstructorId(@PathVariable("instructorId") Long id) {
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(courseQuery.findAllByInstructorId(id));
     }
 
 }

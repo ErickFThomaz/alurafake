@@ -24,6 +24,10 @@ class CourseControllerTest {
     private UserRepository userRepository;
     @MockBean
     private CourseRepository courseRepository;
+    @MockBean
+    private CourseCommand courseCommand;
+    @MockBean
+    private CourseQuery courseQuery;
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -111,4 +115,32 @@ class CourseControllerTest {
                 .andExpect(jsonPath("$[2].description").value("Curso de spring"));
     }
 
+    @Test
+    void publish__should_return_ok_when_course_exists() throws Exception {
+        mockMvc.perform(post("/course/1/publish"))
+                .andExpect(status().isOk());
+
+        verify(courseCommand, times(1)).publish(1L);
+    }
+
+    @Test
+    void findAllCoursesByInstructorId__should_return_courses_by_instructor_id() throws Exception {
+        User paulo = new User("Paulo", "paulo@alua.com.br", Role.INSTRUCTOR);
+
+        Course java = new Course("Java", "Curso de java", paulo);
+        Course hibernate = new Course("Hibernate", "Curso de hibernate", paulo);
+
+        List<CourseListItemDTO> courses = Arrays.asList(new CourseListItemDTO(java), new CourseListItemDTO(hibernate));
+        InstructorCoursesResponse response = new InstructorCoursesResponse(courses, 1L);
+
+        doReturn(response).when(courseQuery).findAllByInstructorId(1L);
+
+        mockMvc.perform(get("/instructor/1/courses"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.courses[0].title").value("Java"))
+                .andExpect(jsonPath("$.courses[0].description").value("Curso de java"))
+                .andExpect(jsonPath("$.courses[1].title").value("Hibernate"))
+                .andExpect(jsonPath("$.courses[1].description").value("Curso de hibernate"))
+                .andExpect(jsonPath("$.totalPublishedCourses").value(1));
+    }
 }

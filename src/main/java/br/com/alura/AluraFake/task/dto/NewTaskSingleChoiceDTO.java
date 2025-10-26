@@ -22,6 +22,16 @@ public class NewTaskSingleChoiceDTO {
     @Size(min = 2, max = 5)
     private List<NewTaskOptionDTO> options;
 
+    public NewTaskSingleChoiceDTO() {
+    }
+
+    public NewTaskSingleChoiceDTO(Long courseId, String statement, Integer order, List<NewTaskOptionDTO> options) {
+        this.courseId = courseId;
+        this.statement = statement;
+        this.order = order;
+        this.options = options;
+    }
+
     public Long getCourseId() {
         return courseId;
     }

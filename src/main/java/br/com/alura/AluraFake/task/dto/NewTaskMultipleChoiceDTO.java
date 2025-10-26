@@ -1,7 +1,6 @@
 package br.com.alura.AluraFake.task.dto;
 
 import br.com.alura.AluraFake.util.validator.ValidMultipleChoiceTask;
-import br.com.alura.AluraFake.util.validator.ValidSingleChoiceTask;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;
@@ -22,6 +21,16 @@ public class NewTaskMultipleChoiceDTO {
 
     @Size(min = 2, max = 5)
     private List<NewTaskOptionDTO> options;
+
+    public NewTaskMultipleChoiceDTO() {
+    }
+
+    public NewTaskMultipleChoiceDTO(Long courseId, String statement, Integer order, List<NewTaskOptionDTO> options) {
+        this.courseId = courseId;
+        this.statement = statement;
+        this.order = order;
+        this.options = options;
+    }
 
     public Long getCourseId() {
         return courseId;
