@@ -1,5 +1,7 @@
 package br.com.alura.AluraFake.course;
 
+import br.com.alura.AluraFake.course.web.dto.CourseListItemDTO;
+import br.com.alura.AluraFake.course.web.dto.InstructorCoursesListDTO;
 import br.com.alura.AluraFake.user.User;
 import br.com.alura.AluraFake.user.UserRepository;
 import br.com.alura.AluraFake.util.exception.BadRequestException;
@@ -23,7 +25,7 @@ public class CourseQuery {
         this.userRepository = userRepository;
     }
 
-    public InstructorCoursesResponse findAllByInstructorId(Long instructorId) {
+    public InstructorCoursesListDTO findAllByInstructorId(Long instructorId) {
         User user = userRepository.findById(instructorId).orElseThrow(() -> new ResourceNotFoundException("Instrutor não encontrado"));
 
         if (!user.isInstructor()) {
@@ -35,6 +37,6 @@ public class CourseQuery {
 
         long totalPublishedCourses = courses.stream().filter(Course::isPublished).count();
 
-        return new InstructorCoursesResponse(courseResponses, totalPublishedCourses);
+        return new InstructorCoursesListDTO(courseResponses, totalPublishedCourses);
     }
 }

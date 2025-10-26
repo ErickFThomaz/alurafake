@@ -1,5 +1,9 @@
 package br.com.alura.AluraFake.course;
 
+import br.com.alura.AluraFake.course.web.CourseController;
+import br.com.alura.AluraFake.course.web.dto.CourseListItemDTO;
+import br.com.alura.AluraFake.course.web.dto.InstructorCoursesListDTO;
+import br.com.alura.AluraFake.course.web.dto.NewCourseDTO;
 import br.com.alura.AluraFake.user.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -131,7 +135,7 @@ class CourseControllerTest {
         Course hibernate = new Course("Hibernate", "Curso de hibernate", paulo);
 
         List<CourseListItemDTO> courses = Arrays.asList(new CourseListItemDTO(java), new CourseListItemDTO(hibernate));
-        InstructorCoursesResponse response = new InstructorCoursesResponse(courses, 1L);
+        InstructorCoursesListDTO response = new InstructorCoursesListDTO(courses, 1L);
 
         doReturn(response).when(courseQuery).findAllByInstructorId(1L);
 

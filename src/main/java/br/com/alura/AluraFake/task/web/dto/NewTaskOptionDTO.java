@@ -1,4 +1,4 @@
-package br.com.alura.AluraFake.task.dto;
+package br.com.alura.AluraFake.task.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;

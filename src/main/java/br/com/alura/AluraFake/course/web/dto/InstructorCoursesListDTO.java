@@ -1,13 +1,13 @@
-package br.com.alura.AluraFake.course;
+package br.com.alura.AluraFake.course.web.dto;
 
 import java.util.List;
 
-public class InstructorCoursesResponse {
+public class InstructorCoursesListDTO {
 
     private final List<CourseListItemDTO> courses;
     private final long totalPublishedCourses;
 
-    public InstructorCoursesResponse(List<CourseListItemDTO> courses, long totalPublishedCourses) {
+    public InstructorCoursesListDTO(List<CourseListItemDTO> courses, long totalPublishedCourses) {
         this.courses = courses;
         this.totalPublishedCourses = totalPublishedCourses;
     }

@@ -1,6 +1,6 @@
 package br.com.alura.AluraFake.util;
 
-import br.com.alura.AluraFake.task.dto.NewTaskOptionDTO;
+import br.com.alura.AluraFake.task.web.dto.NewTaskOptionDTO;
 import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class ValidationUtils {
 
-    public static boolean hasNecessaryQuestions(long necessaryCorrectQuestions, ConstraintValidatorContext context, List<NewTaskOptionDTO> options, boolean valid) {
+    public static boolean hasNecessaryTasks(long necessaryCorrectQuestions, ConstraintValidatorContext context, List<NewTaskOptionDTO> options, boolean valid) {
         long correctCount = options.stream().filter(NewTaskOptionDTO::isCorrect).count();
         if (correctCount != necessaryCorrectQuestions) {
             context.buildConstraintViolationWithTemplate(
@@ -20,7 +20,7 @@ public class ValidationUtils {
         return valid;
     }
 
-    public static boolean hasRepeatedTasks(ConstraintValidatorContext context, List<NewTaskOptionDTO> options, boolean valid) {
+    public static boolean hasUniqueTasks(ConstraintValidatorContext context, List<NewTaskOptionDTO> options, boolean valid) {
         Set<String> unique = new HashSet<>();
         for (NewTaskOptionDTO opt : options) {
             String normalized = opt.getOption().trim().toLowerCase();
@@ -34,7 +34,7 @@ public class ValidationUtils {
         return valid;
     }
 
-    public static boolean hasTaskEqualsStatement(ConstraintValidatorContext context, List<NewTaskOptionDTO> options, String statement, boolean valid) {
+    public static boolean hasTaskNotEqualsStatement(ConstraintValidatorContext context, List<NewTaskOptionDTO> options, String statement, boolean valid) {
         for (NewTaskOptionDTO opt : options) {
             if (opt.getOption().trim().equalsIgnoreCase(statement)) {
                 context.buildConstraintViolationWithTemplate(

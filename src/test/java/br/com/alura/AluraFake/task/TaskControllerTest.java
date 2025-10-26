@@ -1,9 +1,10 @@
 package br.com.alura.AluraFake.task;
 
-import br.com.alura.AluraFake.task.dto.NewTaskMultipleChoiceDTO;
-import br.com.alura.AluraFake.task.dto.NewTaskOpenTextDTO;
-import br.com.alura.AluraFake.task.dto.NewTaskOptionDTO;
-import br.com.alura.AluraFake.task.dto.NewTaskSingleChoiceDTO;
+import br.com.alura.AluraFake.task.web.TaskController;
+import br.com.alura.AluraFake.task.web.dto.NewTaskMultipleChoiceDTO;
+import br.com.alura.AluraFake.task.web.dto.NewTaskOpenTextDTO;
+import br.com.alura.AluraFake.task.web.dto.NewTaskOptionDTO;
+import br.com.alura.AluraFake.task.web.dto.NewTaskSingleChoiceDTO;
 import br.com.alura.AluraFake.util.exception.BadRequestException;
 import br.com.alura.AluraFake.util.exception.ConflictException;
 import br.com.alura.AluraFake.util.exception.ResourceNotFoundException;

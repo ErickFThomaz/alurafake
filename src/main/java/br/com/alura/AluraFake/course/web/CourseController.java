@@ -1,5 +1,8 @@
-package br.com.alura.AluraFake.course;
+package br.com.alura.AluraFake.course.web;
 
+import br.com.alura.AluraFake.course.*;
+import br.com.alura.AluraFake.course.web.dto.CourseListItemDTO;
+import br.com.alura.AluraFake.course.web.dto.NewCourseDTO;
 import br.com.alura.AluraFake.user.*;
 import br.com.alura.AluraFake.util.ErrorItemDTO;
 import jakarta.validation.Valid;

@@ -1,7 +1,7 @@
 package br.com.alura.AluraFake.task;
 
 import br.com.alura.AluraFake.course.Course;
-import br.com.alura.AluraFake.task.dto.NewTaskOptionDTO;
+import br.com.alura.AluraFake.task.web.dto.NewTaskOptionDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

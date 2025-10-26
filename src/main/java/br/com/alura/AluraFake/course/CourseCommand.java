@@ -23,8 +23,6 @@ public class CourseCommand {
 
     private final CourseRepository repository;
 
-
-
     @Autowired
     public CourseCommand(CourseRepository repository, TaskQuery taskQuery) {
         this.repository = repository;
@@ -35,7 +33,7 @@ public class CourseCommand {
         Course course = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Curso não foi encontrado"));
 
-        if(!course.isBuildingStatus()) {
+        if(course.isPublished()) {
             throw new ConflictException("O curso já está publicado e não pode ser publicado novamente.");
         }
 
@@ -48,11 +46,11 @@ public class CourseCommand {
     }
 
     private void validateHasAllTaskTypes(List<Task> tasks) {
-        Set<Type> tiposPresentes = tasks.stream()
+        Set<Type> presentTypes = tasks.stream()
                 .map(Task::getType)
                 .collect(Collectors.toSet());
 
-        if (!tiposPresentes.containsAll(EnumSet.allOf(Type.class))) {
+        if (!presentTypes.containsAll(EnumSet.allOf(Type.class))) {
             throw new ConflictException("O curso precisa ter ao menos uma atividade de cada tipo antes de ser publicado");
         }
     }

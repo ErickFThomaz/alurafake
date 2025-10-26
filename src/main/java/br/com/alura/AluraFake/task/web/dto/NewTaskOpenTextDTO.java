@@ -1,4 +1,4 @@
-package br.com.alura.AluraFake.task.dto;
+package br.com.alura.AluraFake.task.web.dto;
 
 import jakarta.validation.constraints.Min;
 import org.hibernate.validator.constraints.Length;

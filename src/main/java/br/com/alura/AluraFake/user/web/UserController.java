@@ -1,5 +1,9 @@
-package br.com.alura.AluraFake.user;
+package br.com.alura.AluraFake.user.web;
 
+import br.com.alura.AluraFake.user.web.dto.NewUserDTO;
+import br.com.alura.AluraFake.user.User;
+import br.com.alura.AluraFake.user.web.dto.UserListItemDTO;
+import br.com.alura.AluraFake.user.UserRepository;
 import br.com.alura.AluraFake.util.ErrorItemDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.*;

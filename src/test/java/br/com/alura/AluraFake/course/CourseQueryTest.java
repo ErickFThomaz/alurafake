@@ -1,5 +1,6 @@
 package br.com.alura.AluraFake.course;
 
+import br.com.alura.AluraFake.course.web.dto.InstructorCoursesListDTO;
 import br.com.alura.AluraFake.user.Role;
 import br.com.alura.AluraFake.user.User;
 import br.com.alura.AluraFake.user.UserRepository;
@@ -13,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -65,7 +65,7 @@ class CourseQueryTest {
         spring.setStatus(Status.PUBLISHED);
         doReturn(Arrays.asList(java, spring)).when(courseRepository).findAllByInstructor(instructor);
 
-        InstructorCoursesResponse response = courseQuery.findAllByInstructorId(1L);
+        InstructorCoursesListDTO response = courseQuery.findAllByInstructorId(1L);
 
         verify(courseRepository).findAllByInstructor(instructor);
         assertThat(response.getCourses()).hasSize(2);

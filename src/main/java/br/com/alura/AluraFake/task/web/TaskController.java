@@ -1,8 +1,9 @@
-package br.com.alura.AluraFake.task;
+package br.com.alura.AluraFake.task.web;
 
-import br.com.alura.AluraFake.task.dto.NewTaskMultipleChoiceDTO;
-import br.com.alura.AluraFake.task.dto.NewTaskOpenTextDTO;
-import br.com.alura.AluraFake.task.dto.NewTaskSingleChoiceDTO;
+import br.com.alura.AluraFake.task.TaskCommand;
+import br.com.alura.AluraFake.task.web.dto.NewTaskMultipleChoiceDTO;
+import br.com.alura.AluraFake.task.web.dto.NewTaskOpenTextDTO;
+import br.com.alura.AluraFake.task.web.dto.NewTaskSingleChoiceDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package br.com.alura.AluraFake.task.dto;
+package br.com.alura.AluraFake.task.web.dto;
 
 import br.com.alura.AluraFake.util.validator.ValidSingleChoiceTask;
 import jakarta.validation.constraints.Min;
